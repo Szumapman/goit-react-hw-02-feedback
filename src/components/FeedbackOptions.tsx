@@ -1,3 +1,5 @@
+import css from './FeedbackOptions.module.css'
+
 type FeedbackOptionsProps = {
     statOptions: string[];
     onLeaveFeedback: (e: { target: { innerText: string; }; }) => void;
@@ -6,7 +8,7 @@ type FeedbackOptionsProps = {
 
 export const FeedbackOptions = ({ statOptions, onLeaveFeedback }: FeedbackOptionsProps) => {
     return (
-        <div className="feedback-options">
+        <div className={css.feedbackOptions}>
             {statOptions.map((option) => (
                 <button key={option} onClick={(e) => onLeaveFeedback({ target: { innerText: e.currentTarget.innerText } })}>
                     {option}
