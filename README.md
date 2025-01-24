@@ -1,50 +1,28 @@
-# React + TypeScript + Vite
+# Zadanie domowe #2.1 - React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Widget odpowiedzi
+Jak większość firm, kawiarnia Expresso zbiera feedback od swoich klientów. Twoim zadaniem jest stworzenie aplikacji dla zbierania statystyk. Są tylko trzy warianty odpowiedzi: dobry, neutralny, zły.
 
-Currently, two official plugins are available:
+### Krok 1
+Aplikacja powinna wyświetlać ilość zebranych odpowiedzi dla każdej kategorii. Aplikacja nie powinna przechowywać statystyk odpowiedzi między różnymi sesjami (odświeżenie strony).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Stan aplikacji obowiązkowo powinien wyglądać następująco, nie można dodawać nowych właściwości:
 ```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+state = {
+  good: 0,
+  neutral: 0,
+  bad: 0
+}
 ```
+### Krok 2
+Rozszerz funkcjonalność aplikacji tak, aby w interfejsie wyświetlało się więcej statystyk o zebranych odpowiedziach. Dodaj wyświetlanie ogólnej ilości zebranych odpowiedzi ze wszystkich kategorii i procent pozytywnych odpowiedzi. W tym celu utwórz metody pomocnicze countTotalFeedback() i countPositiveFeedbackPercentage() podliczające te wartości, bazując na danych w stanie (obliczane dane).
+
+### Krok 3
+Wykonaj refaktor aplikacji. Stan aplikacji powinien zostawać w komponencie root <App>.
+
+* Przenieś wyświetlanie statystyk do oddzielnego komponentu `<Statistics good={} neutral={} bad={} total={} positivePercentage={}>`.
+* Przenieś blok przycisków do komponentu `<FeedbackOptions options={} onLeaveFeedback={}>`.
+* Utwórz komponent `<Section title="">`, który renderuje sekcję z nagłówkiem i dziećmi (children). Zamień każdy z `<Statistics>` i `<FeedbackOptions>` w utworzony komponent sekcji.
+
+### Krok 4
+Rozszerz funkcjonalność aplikacji tak, aby blok statystyk renderował się dopiero po otrzymaniu przynajmniej jednej odpowiedzi. Wiadomość o braku statystyk przenieś do komponentu `<Notification message="There is no feedback">`.
