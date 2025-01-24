@@ -1,9 +1,9 @@
 import css from './NoFeedbackNotification.module.css'
 
-export const NoFeedbackNotification = () => {
+export const NoFeedbackNotification = ({ message }: { message: string }) => {
     return (
         <div className={css.noFeedback}>
-            <p>There is no feedback</p>
+            <p>{ message }</p>
         </div>
     )
 }

@@ -30,7 +30,7 @@ function App() {
         {total > 0 ? (
             <FeedbackStat feedback={feedback} total={total} positivePercentage={positivePercentage} />
           ) : (
-            <NoFeedbackNotification />
+            <NoFeedbackNotification message="There is no feedback" />
           )
         }
       </div>
